@@ -6,17 +6,20 @@ import { catchError, retry } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class MarsweatherService {
-  // url = 'https://api.nasa.gov/insight_weather/?api_key=DEMO_KEY&feedtype=json&ver=1.0';
-  url = 'https://api.mars.spacexcompanion.app/v1/weather/233';
-
   constructor(private http: HttpClient) { }
 
 getConfig() {
 }
 
-GetWeather(): Observable<any>{
-  return this.http.get(this.url);
+  GetLatestWeather(): Observable<any>{
+    return this.http.get("https://api.mars.spacexcompanion.app/v1/weather/latest");
   }
+
+  GetWeather(date : Date, range : String): Observable<any>{
+    let url = "https://api.mars.spacexcompanion.app/v1/weather?month="+(date.getMonth()+1)+"&year="+ date.getFullYear()+"&day="+ date.getDate()+"&range=" + range;
+    return this.http.get(url);
+  }
+
 }
 
 export interface Config {

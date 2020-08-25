@@ -1,4 +1,32 @@
-<h1>{{mars.sol}}</h1>
-<p>{{mars.air.temperature.average}}</p>
-<canvas #canvas width="100" height="100"></canvas>
-<div *ngFor="let c of mars.wind.directions">{{c.point}} - {{c.degrees}}</div>
+<div class="selectcontainer">
+    <input type="date" value="{{date | date : 'yyyy-MM-dd'}}" min="2019-11-25" #indate>
+
+    <span>
+        range:
+        <select name="range" #range>
+            <option value="day">day</option>
+            <option value="week">week</option>
+            <option value="month">month</option>
+            <option value="year">year</option>
+            <option value="1">all of it</option>
+        </select>
+    </span>
+    <button (click)="selectclick(indate.value, range.value)">Get</button>
+</div>
+<div class="container">
+    <div class="sol" *ngFor="let marsweather of mars">
+        <span> {{marsweather.measurement.first | date:'dd/MM/yyyy'}} - {{marsweather.measurement.last | date:'dd/MM/yyyy'}} <br>
+            {{marsweather.season}}
+        </span>
+        <h1>{{marsweather.sol}}
+            <img src="../../assets/Hot.png" *ngIf="marsweather.air.temperature.maximum > -10">
+            <img src="../../assets/1184671-200.png" *ngIf="marsweather.air.temperature.minimum < -100">
+            <img src="../../assets/wind.png" *ngIf="marsweather.wind.speed.maximum > 23.5">
+        </h1>
+        <div class="datacontainer">
+            <span>Temperature:<br>{{marsweather.air.temperature.minimum.toFixed(2)}}°C to {{marsweather.air.temperature.maximum.toFixed(2)}}°C</span><br>
+            <span>Pressure:<br>{{marsweather.air.pressure.minimum.toFixed(2)}}Pa to {{marsweather.air.pressure.maximum.toFixed(2)}}Pa</span><br>
+            <span>Wind speed:<br>{{marsweather.wind.speed.minimum.toFixed(2)}}m/s to {{marsweather.wind.speed.maximum.toFixed(2)}}m/s</span><br>
+        </div>
+    </div>
+</div>

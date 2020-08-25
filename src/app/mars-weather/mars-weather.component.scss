@@ -1,0 +1,32 @@
+.sol{
+    display: inline-block;
+    padding: 10px;
+    border: 0px;
+    border-right: 1px;
+    border-left: 1px;
+    border-style: solid;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.4);
+    margin: 10px 5px 10px 5px;
+    border-radius: 25px;
+    
+}
+.container{
+    overflow-x: scroll;
+    background-image: url("../../assets/download.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+}
+span{
+margin-top: 10ox;
+}
+img{
+    width: 15px;
+    height: 15px;
+}
+h1{
+    margin: 5px;
+}
